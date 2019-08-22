@@ -19,68 +19,56 @@
 #define HAVE_UNISTD_H 1
 #define SIZEOF_VOID_P 8
 #define LG_SIZEOF_PTR 3
+#define SIZEOF_INT 4
+#define LG_SIZEOF_INT 2
+#define SIZEOF_LONG 8
+#define LG_SIZEOF_LONG 3
+#define SIZEOF_LONG_LONG 8
+#define LG_SIZEOF_LONG_LONG 3
+#define SIZEOF_INTMAX_T 8
+#define LG_SIZEOF_INTMAX_T 3
+#define HAVE_CPU_SPINWAIT 1
+#define CPU_SPINWAIT __asm__ volatile("pause")
+#define LG_VADDR 48
+#define LG_VADDR 48
+#define JEMALLOC_PURGE_MADVISE_DONTNEED_ZEROS  
+#define JEMALLOC_HAS_ALLOCA_H 1
+#define JEMALLOC_PROC_SYS_VM_OVERCOMMIT_MEMORY  
+#define JEMALLOC_THREADED_INIT  
+#define JEMALLOC_USE_CXX_THROW  
+#define HAVE_MALLOC_H 1
+#define JEMALLOC_USABLE_SIZE_CONST 
+#define JEMALLOC_HAVE_ATTR  
+#define JEMALLOC_HAVE_ATTR_ALLOC_SIZE  
+#define JEMALLOC_HAVE_ATTR_FORMAT_GNU_PRINTF  
+#define JEMALLOC_HAVE_ATTR_FORMAT_PRINTF  
+#define JEMALLOC_PREFIX "je_"
+#define JEMALLOC_CPREFIX "JE_"
+#define JEMALLOC_OVERRIDE_MEMALIGN  
+#define JEMALLOC_OVERRIDE_VALLOC  
+#define JEMALLOC_PRIVATE_NAMESPACE je_
+#define JEMALLOC_CONFIG_MALLOC_CONF ""
+#define JEMALLOC_STATS  
+#define JEMALLOC_MAPS_COALESCE  
+#define JEMALLOC_RETAIN  
+#define JEMALLOC_DSS  
+#define JEMALLOC_FILL  
+#define JEMALLOC_CACHE_OBLIVIOUS  
+#define JEMALLOC_INTERNAL_UNREACHABLE __builtin_unreachable
 /* end confdefs.h.  */
+
 #include <stdio.h>
-#ifdef HAVE_SYS_TYPES_H
-# include <sys/types.h>
-#endif
-#ifdef HAVE_SYS_STAT_H
-# include <sys/stat.h>
-#endif
-#ifdef STDC_HEADERS
-# include <stdlib.h>
-# include <stddef.h>
-#else
-# ifdef HAVE_STDLIB_H
-#  include <stdlib.h>
-# endif
-#endif
-#ifdef HAVE_STRING_H
-# if !defined STDC_HEADERS && defined HAVE_MEMORY_H
-#  include <memory.h>
-# endif
-# include <string.h>
-#endif
-#ifdef HAVE_STRINGS_H
-# include <strings.h>
-#endif
-#ifdef HAVE_INTTYPES_H
-# include <inttypes.h>
-#endif
-#ifdef HAVE_STDINT_H
-# include <stdint.h>
-#endif
-#ifdef HAVE_UNISTD_H
-# include <unistd.h>
-#endif
-static long int longval () { return (long int) (sizeof (int)); }
-static unsigned long int ulongval () { return (long int) (sizeof (int)); }
-#include <stdio.h>
-#include <stdlib.h>
+#include <strings.h>
+#include <string.h>
+
 int
 main ()
 {
 
-  FILE *f = fopen ("conftest.val", "w");
-  if (! f)
-    return 1;
-  if (((long int) (sizeof (int))) < 0)
-    {
-      long int i = longval ();
-      if (i != ((long int) (sizeof (int))))
-	return 1;
-      fprintf (f, "%ld", i);
-    }
-  else
-    {
-      unsigned long int i = ulongval ();
-      if (i != ((long int) (sizeof (int))))
-	return 1;
-      fprintf (f, "%lu", i);
-    }
-  /* Do not output a trailing newline, as this causes \r\n confusion
-     on some platforms.  */
-  return ferror (f) || fclose (f) != 0;
+	{
+		int rv = __builtin_ffsl(0x08);
+		printf("%d\n", rv);
+	}
 
   ;
   return 0;
