@@ -1,0 +1,4 @@
+conftest.c: In function 'main':
+conftest.c:98:9: warning: variable 'ptr' set but not used [-Wunused-but-set-variable]
+   void *ptr = 0L;
+         ^
